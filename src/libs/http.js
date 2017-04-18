@@ -1,4 +1,5 @@
 import Util from './util'
+import Ajax from './ajax'
 
 var appAjax = function (context, url, params, success, error, options) {
   params = params || {}
@@ -39,7 +40,7 @@ var appAjax = function (context, url, params, success, error, options) {
       error.call(context, -1, '网络异常')
     }
   }
-  Util.ajax(options)
+  Ajax.ajax(options)
 }
 
 var http = {

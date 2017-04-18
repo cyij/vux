@@ -128,5 +128,8 @@
   "XProgress": "src/components/x-progress/index.vue",
   "XSwitch": "src/components/x-switch/index.vue",
   "XTable": "src/components/x-table/index.vue",
-  "XTextarea": "src/components/x-textarea/index.vue"
+  "XTextarea": "src/components/x-textarea/index.vue",
+  "Page": "src/components/page/index.vue",
+  "Navbar": "src/components/navbar/index.vue",
+  "Toolbar": "src/components/toolbar/index.vue"
 }
