@@ -260,10 +260,6 @@
     "icon": "&#xe63c;"
   },
   {
-    "name": "x-address",
-    "icon": "&#xe61b;"
-  },
-  {
     "name": "x-button",
     "icon": "&#xe616;"
   },
@@ -305,6 +301,18 @@
   },
   {
     "name": "x-textarea",
+    "icon": "&#xe611;"
+  },
+  {
+    "name": "page",
+    "icon": "&#xe611;"
+  },
+  {
+    "name": "navbar",
+    "icon": "&#xe611;"
+  },
+  {
+    "name": "toolbar",
     "icon": "&#xe611;"
   }
 ]
