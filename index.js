@@ -1,11 +1,11 @@
 // THIS FILE IS ONLY FOR IDE ENTRY CHECKING NOT FOR REAL USAGE
-import GEvent from './src/libs/gevent'
-import Http from './src/libs/http'
-import AppPlugin from './src/plugins/app'
-import PagePlugin from './src/plugins/page'
-import Navbar from './src/components/navbar'
-import Page from './src/components/page'
-import Toolbar from './src/components/toolbar'
+import GEvent from './src/libs/gevent.js'
+import Http from './src/libs/http.js'
+import AppPlugin from './src/plugins/app.js'
+import PagePlugin from './src/plugins/page/index.js'
+import Navbar from './src/components/navbar/index.vue'
+import Page from './src/components/page/index.vue'
+import Toolbar from './src/components/toolbar/index.vue'
 
 import Actionsheet from './src/components/actionsheet/index.vue'
 import Agree from './src/components/agree/index.vue'
