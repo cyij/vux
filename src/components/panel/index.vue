@@ -4,7 +4,7 @@
     <div class="weui-panel__bd">
       <!--type==='1'-->
       <template v-if="type === '1'">
-        <a :href="getUrl(item.url)" v-for="item in list" @click.prevent="onItemClick(item)" class="weui-media-box weui-media-box_appmsg">
+        <a v-for="item in list" @click.prevent="onItemClick(item)" class="weui-media-box weui-media-box_appmsg">
           <div class="weui-media-box__hd" v-if="item.src">
             <img class="weui-media-box__thumb" :src="item.src" alt="">
           </div>
@@ -25,7 +25,7 @@
       <template v-if="type === '3'">
         <div class="weui-media-box weui-media-box_small-appmsg">
             <div class="weui-cells">
-              <a class="weui-cell weui-cell_access" :href="getUrl(item.url)" v-for="item in list" @click.prevent="onItemClick(item)">
+              <a class="weui-cell weui-cell_access" v-for="item in list" @click.prevent="onItemClick(item)">
                 <div class="weui-cell__hd">
                   <img :src="item.src" alt="" style="width:20px;margin-right:5px;display:block">
                 </div>
@@ -39,7 +39,7 @@
       </template>
     </div>
     <div class="weui-panel__ft">
-      <a class="weui-cell weui-cell_access weui-cell_link" :href="getUrl(footer.url)" v-if="footer && type !== '3'" @click.prevent="onClickFooter">
+      <a class="weui-cell weui-cell_access weui-cell_link" v-if="footer && type !== '3'" @click.prevent="onClickFooter">
         <div class="weui-cell__bd" v-html="footer.title"></div>
       </a>
     </div>
@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import { go, getUrl } from '../../libs/router'
 
 export default {
   props: {
@@ -60,19 +59,14 @@ export default {
     }
   },
   methods: {
-    getUrl (url) {
-      return getUrl(url, this.$router)
-    },
     onClickFooter () {
-      this.$emit('on-click-footer')
-      go(this.footer.url, this.$router)
+      this.$emit('on-click-footer', this.footer)
     },
     onClickHeader () {
       this.$emit('on-click-header')
     },
     onItemClick (item) {
       this.$emit('on-click-item', item)
-      go(item.url, this.$router)
     }
   }
 }

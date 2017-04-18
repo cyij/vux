@@ -18,14 +18,13 @@
 </template>
 
 <script>
-import { go } from '../../libs/router'
 
 export default {
   props: ['icon', 'title', 'description', 'buttons'],
   methods: {
     onClick (handler, link) {
       typeof handler === 'function' && handler()
-      link && go(link, this.$router)
+      link && this.$emit('on-click', link)
     }
   }
 }

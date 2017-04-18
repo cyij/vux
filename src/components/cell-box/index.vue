@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import { go } from '../../libs/router'
 
 export default {
   props: {
@@ -18,7 +17,7 @@ export default {
   },
   methods: {
     onClick () {
-      this.link && go(this.link, this.$router)
+      this.$emit('on-click', this.link)
     }
   }
 }

@@ -15,8 +15,6 @@
 </template>
 
 <script>
-import { go } from '../../libs/router'
-
 export default {
   props: {
     header: Object,
@@ -24,7 +22,6 @@ export default {
   },
   methods: {
     onClickFooter () {
-      this.footer.link && go(this.footer.link, this.$router)
       this.$emit('on-click-footer')
     }
   }

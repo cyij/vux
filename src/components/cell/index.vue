@@ -21,7 +21,6 @@
 
 <script>
 import InlineDesc from '../inline-desc'
-import { go } from '../../libs/router'
 import props from './props'
 
 export default {
@@ -42,7 +41,9 @@ export default {
   },
   methods: {
     onClick () {
-      go(this.link, this.$router)
+      if (this.isLink) {
+        this.$emit(this.link)
+      }
     }
   }
 }

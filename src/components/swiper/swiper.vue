@@ -19,7 +19,6 @@
 
 <script>
 import Swiper from './swiper.js'
-import { go } from '../../libs/router'
 
 export default {
   created () {
@@ -38,8 +37,7 @@ export default {
   },
   methods: {
     clickListItem (item) {
-      go(item.url, this.$router)
-      this.$emit('on-click-list-item', JSON.parse(JSON.stringify(item)))
+      this.$emit('on-click-list-item', item)
     },
     buildBackgroundUrl (url) {
       return `url(${url})`

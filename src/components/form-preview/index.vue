@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import { go } from '../../libs/router'
 
 export default {
   props: ['headerLabel', 'headerValue', 'bodyItems', 'footerButtons', 'name'],
@@ -25,7 +24,7 @@ export default {
     onButtonClick (cb, link) {
       cb && cb(this.name)
       if (link) {
-        go(link, this.$router)
+        this.$emit('on-button-click', link)
       }
     }
   }

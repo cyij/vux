@@ -17,6 +17,23 @@ export default {
     labelAlign: String,
     labelMarginRight: String,
     gutter: String
+  },
+  methods: {
+    validate () {
+      let status = true, errors = [], indexs = []
+      for (let i=0; i<this.$children.length; i++) {
+        if (typeof this.$children[i].validate === 'function') {
+          if(!this.$children[i].validate(false)) {
+            status = false
+          }
+          if (typeof this.$children[i].getError === 'function') {
+            errors.push(this.$children[i].getError())
+            indexs.push(i)
+          }
+        }
+      }
+      return [status, indexs, errors]
+    }
   }
 }
 </script>

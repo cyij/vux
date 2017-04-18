@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import { go } from '../../libs/router'
 
 export default {
   props: ['icon', 'label', 'link'],
@@ -34,8 +33,7 @@ export default {
   },
   methods: {
     onClick () {
-      this.$emit('on-item-click')
-      go(this.link, this.$router)
+      this.$emit('on-item-click', this.link)
     }
   },
   data () {
