@@ -3,7 +3,7 @@
   <div class="weui-cell__hd">
     <slot name="label">
       <label class="weui-label" :style="{width: $parent.labelWidth || (labelWidth + 'em'), textAlign: $parent.labelAlign, marginRight: $parent.labelMarginRight}" v-if="title" v-html="title"></label>
-      <span v-show="tips">{{tips}}</span>
+      <inline-desc v-if="inlineDesc">{{inlineDesc}}</inline-desc>
     </slot>
   </div>
   <div class="weui-cell__bd">
@@ -33,13 +33,16 @@
 </template>
 
 <script>
-import {Icon} from 'vux'
-import Validator from '../../libs/util/validate'
-import Util from '../../libs/util/util'
+import Icon from '../icon'
+import InlineDesc from '../inline-desc'
+import Validator from '../../libs/validate'
+import trim from '../../libs/trim'
+import Debounce from '../../tools/debounce'
 
 export default {
   components: {
-    Icon
+    Icon,
+    InlineDesc
   },
   props: {
     title: {
@@ -71,7 +74,7 @@ export default {
     value: [String, Number],
     readonly: Boolean,
     disabled: Boolean,
-    tips: String,
+    inlineDesc: String,
     showClear: {
       type: Boolean,
       default: true
@@ -94,7 +97,8 @@ export default {
       type: String,
       default: 'false'
     },
-    validator: String
+    validator: String,
+    debounce: Number
   },
   data () {
     return {
@@ -112,22 +116,22 @@ export default {
     if (this.validator) {
       let vs = this.validator.split(';')
       for (let i=0; i<vs.length; i++) {
-        vs[i] = Util.trim(vs[i])
+        vs[i] = trim(vs[i])
         if (!vs[i]) {
           continue
         }
         let func, params=[], error
         vs[i] = vs[i].split('|')
-        let tmp = Util.trim(vs[i][0])
+        let tmp = trim(vs[i][0])
         if (vs[i].length > 1) {
-          error = Util.trim(vs[i][1])
+          error = trim(vs[i][1])
         }
         let pos = tmp.indexOf('(')
         if (pos >= 0) {
-          func = Util.trim(tmp.substr(0, pos))
+          func = trim(tmp.substr(0, pos))
           tmp = tmp.substr(pos+1, tmp.length-pos-2).split(',')
           for (let j=0; j<tmp.length; j++) {
-            tmp[j] = Util.trim(tmp[j])
+            tmp[j] = trim(tmp[j])
             if (tmp[j]) {
               params.push(tmp[j])
             }
@@ -137,6 +141,11 @@ export default {
         }
         this.validators.push([func, params, error])
       }
+    }
+    if (this.debounce) {
+      this._debounce = Debounce(() => {
+        this.$emit('on-change', this.currentValue)
+      }, this.debounce)
     }
   },
   mounted () {
