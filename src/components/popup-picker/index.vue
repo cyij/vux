@@ -2,7 +2,7 @@
   <div class="vux-cell-box">
     <div class="weui-cell vux-tap-active weui-cell_access" @click="onClick" v-show="showCell">
       <div class="weui-cell__hd">
-        <label class="weui-label" :style="{display: 'block', width: $parent.labelWidth || $parent.$parent.labelWidth, textAlign: $parent.labelAlign || $parent.$parent.labelAlign, marginRight: $parent.labelMarginRight || $parent.$parent.labelMarginRight}" v-if="title" v-html="title"></label>
+        <label class="weui-label" :style="{display: 'block', width: labelWidth || $parent.labelWidth || $parent.$parent.labelWidth, textAlign: $parent.labelAlign || $parent.$parent.labelAlign, marginRight: $parent.labelMarginRight || $parent.$parent.labelMarginRight}" v-if="title" v-html="title"></label>
         <inline-desc v-if="inlineDesc">{{inlineDesc}}</inline-desc>
       </div>
       <div class="vux-cell-primary vux-popup-picker-select-box">
@@ -79,6 +79,7 @@ export default {
     value2name
   },
   props: {
+    labelWidth: String,
     valueTextAlign: {
       type: String,
       default: 'right'
@@ -133,6 +134,11 @@ export default {
       return value2name(this.currentValue, this.data)
     },
     onClick () {
+      if (this.data.length < 1) {
+        this.showValue = false
+        this.$emit('on-data-loading')
+        return
+      }
       this.showValue = true
     },
     onHide (type) {
