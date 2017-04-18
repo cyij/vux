@@ -11,7 +11,7 @@
     <div class="weui-msg__opr-area">
       <p class="weui-btn-area">
         <slot name="buttons"></slot>
-        <a v-for="button in buttons" href="javascript:;" class="weui-btn" :class="`weui-btn_${button.type}`" @click="onClick(button.onClick, button.link)">{{$t(button.text)}}</a>
+        <a v-for="button in buttons" href="javascript:;" class="weui-btn" :class="`weui-btn_${button.type}`" @click="onClick(button.onClick, button.link)">{{button.text}}</a>
       </p>
     </div>
   </div>

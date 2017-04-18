@@ -10,21 +10,12 @@
       <div class="weui-dialog__hd"><strong class="weui-dialog__title">{{title}}</strong></div>
       <div class="weui-dialog__bd"><slot><div v-html="content"></div></slot></div>
       <div class="weui-dialog__ft">
-        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default" @click="_onCancel">{{cancelText || $t('cancel_text')}}</a>
-        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" @click="_onConfirm">{{confirmText || $t('confirm_text')}}</a>
+        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default" @click="_onCancel">{{cancelText}}</a>
+        <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" @click="_onConfirm">{{confirmText}}</a>
       </div>
     </x-dialog>
   </div>
 </template>
-
-<i18n>
-confirm_text:
-  en: confirm
-  zh-CN: 确定
-cancel_text:
-  en: cancel
-  zh-CN: 取消
-</i18n>
 
 <script>
 import XDialog from '../x-dialog'
@@ -42,8 +33,14 @@ export default {
       default: false
     },
     title: String,
-    confirmText: String,
-    cancelText: String,
+    confirmText: {
+      type: String,
+      default: '确定'
+    },
+    cancelText: {
+      type: String,
+      default: '取消'
+    },
     maskTransition: {
       type: String,
       default: 'vux-fade'

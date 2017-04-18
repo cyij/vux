@@ -6,12 +6,12 @@
     </div>
     <div class="weui-form-preview__bd">
       <div class="weui-form-preview__item" v-for="item in bodyItems">
-        <label class="weui-form-preview__label">{{$t(item.label)}}</label>
-        <span class="weui-form-preview__value">{{$t(item.value)}}</span>
+        <label class="weui-form-preview__label">{{item.label}}</label>
+        <span class="weui-form-preview__value">{{item.value}}</span>
       </div>
     </div>
     <div class="weui-form-preview__ft">
-      <a class="weui-form-preview__btn" :class="{'weui-form-preview__btn_default': button.style==='default', 'weui-form-preview__btn_primary': button.style === 'primary'}" href="javascript:" v-for="button in footerButtons" @click="onButtonClick(button.onButtonClick, button.link)">{{$t(button.text)}}</a>
+      <a class="weui-form-preview__btn" :class="{'weui-form-preview__btn_default': button.style==='default', 'weui-form-preview__btn_primary': button.style === 'primary'}" href="javascript:" v-for="button in footerButtons" @click="onButtonClick(button.onButtonClick, button.link)">{{button.text}}</a>
     </div>
   </div>
 </template>

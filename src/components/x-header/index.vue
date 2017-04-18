@@ -2,7 +2,7 @@
   <div class="vux-header">
     <div class="vux-header-left">
       <transition :name="transition">
-        <a class="vux-header-back" @click.preventDefault v-show="_leftOptions.showBack" @click="onClickBack">{{ typeof _leftOptions.backText === 'undefined' ? $t('back_text') : _leftOptions.backText}}</a>
+        <a class="vux-header-back" @click.preventDefault v-show="_leftOptions.showBack" @click="onClickBack">{{ typeof _leftOptions.backText === 'undefined' ? '返回' : _leftOptions.backText}}</a>
       </transition>
       <transition :name="transition">
         <div class="left-arrow" @click="onClickBack" v-show="_leftOptions.showBack"></div>
@@ -22,12 +22,6 @@
     </div>
   </div>
 </template>
-
-<i18n>
-back_text:
-  en: Back
-  zh-CN: 返回
-</i18n>
 
 <script>
 import objectAssign from 'object-assign'

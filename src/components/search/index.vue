@@ -12,10 +12,10 @@
         </div>
         <label :for="`search_input_${uuid}`" class="weui-search-bar__label" v-show="!isFocus && !value">
           <i class="weui-icon-search"></i>
-          <span>{{placeholder || $t('placeholder')}}</span>
+          <span>{{placeholder}}</span>
         </label>
       </form>
-      <a href="javascript:" class="weui-search-bar__cancel-btn" @click="cancel">{{cancelText || $t('cancel_text')}}</a>
+      <a href="javascript:" class="weui-search-bar__cancel-btn" @click="cancel">{{cancelText}}</a>
       <slot name="right"></slot>
     </div>
     <div class="weui-cells vux-search_show" v-show="isFixed">
@@ -29,15 +29,6 @@
   </div>
 </template>
 
-<i18n>
-cancel_text:
-  en: cancel
-  zh-CN: 取消
-placeholder:
-  en: Search
-  zh-CN: 搜索
-</i18n>
-
 <script>
 import uuidMixin from '../../mixins/uuid'
 
@@ -48,8 +39,14 @@ export default {
       type: Boolean,
       default: false
     },
-    placeholder: String,
-    cancelText: String,
+    placeholder: {
+      type: String,
+      default: '搜索'
+    },
+    cancelText: {
+      type: String,
+      default: '取消'
+    },
     value: {
       type: String,
       default: ''

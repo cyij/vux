@@ -5,21 +5,15 @@
     </transition>
     <div class="weui-actionsheet" :class="{'weui-actionsheet_toggle': show}">
       <div class="weui-actionsheet__menu">
-        <div class="weui-actionsheet__cell" v-for="(text, key) in menus" @click="onMenuClick(text, key)" v-html="$t(text.label || text)" :class="`vux-actionsheet-menu-${text.type || 'default'}`">
+        <div class="weui-actionsheet__cell" v-for="(text, key) in menus" @click="onMenuClick(text, key)" v-html="text.label || text" :class="`vux-actionsheet-menu-${text.type || 'default'}`">
         </div>
       </div>
       <div class="weui-actionsheet__action" @click="emitEvent('on-click-menu', 'cancel')" v-if="showCancel">
-        <div class="weui-actionsheet__cell">{{cancelText || $t('cancel')}}</div>
+        <div class="weui-actionsheet__cell">{{cancelText}}</div>
       </div>
     </div>
   </div>
 </template>
-
-<i18n>
-cancel:
-  en: cancel
-  zh-CN: 取消
-</i18n>
 
 <script>
 export default {
@@ -31,7 +25,10 @@ export default {
   props: {
     value: Boolean,
     showCancel: Boolean,
-    cancelText: String,
+    cancelText: {
+      type: String,
+      default: '取消'
+    },
     menus: {
       type: [Object, Array],
       default: () => ({})

@@ -4,17 +4,11 @@
       <div class="weui-mask_transparent"></div>
       <div class="weui-toast" :style="{ position: position }">
         <i class="weui-loading weui-icon_toast"></i>
-        <p class="weui-toast__content">{{ $t(text) || $t('loading') }}<slot></slot></p>
+        <p class="weui-toast__content">{{ text }}<slot></slot></p>
       </div>
     </div>
   </transition>
 </template>
-
-<i18n>
-loading:
-  en: loading
-  zh-CN: 加载中
-</i18n>
 
 <script>
 export default {
@@ -23,7 +17,10 @@ export default {
       type: Boolean,
       default: false
     },
-    text: String,
+    text: {
+      type: String,
+      default: '加载中'
+    },
     position: String
   },
   created () {

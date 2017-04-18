@@ -17,17 +17,11 @@
       <div class="weui-dialog__ft">
         <a href="javascript:;"
         class="weui-dialog__btn weui-dialog__btn_primary"
-        @click="_onHide">{{buttonText || $t('button_text')}}</a>
+        @click="_onHide">{{buttonText}}</a>
       </div>
     </x-dialog>
   </div>
 </template>
-
-<i18n>
-button_text:
-  en: OK
-  zh-CN: 确定
-</i18n>
 
 <script>
 import XDialog from '../x-dialog'
@@ -45,7 +39,10 @@ export default {
     value: Boolean,
     title: String,
     content: String,
-    buttonText: String,
+    buttonText: {
+      type: String,
+      default: '确定'
+    },
     maskTransition: {
       type: String,
       default: 'vux-mask'
