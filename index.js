@@ -1,4 +1,11 @@
 // THIS FILE IS ONLY FOR IDE ENTRY CHECKING NOT FOR REAL USAGE
+import GEvent from './src/libs/gevent'
+import Http from './src/libs/http'
+import AppPlugin from './src/plugins/app'
+import PagePlugin from './src/plugins/page'
+import Navbar from './src/components/navbar'
+import Page from './src/components/page'
+import Toolbar from './src/components/toolbar'
 
 import Actionsheet from './src/components/actionsheet/index.vue'
 import Agree from './src/components/agree/index.vue'
@@ -134,6 +141,14 @@ import XTable from './src/components/x-table/index.vue'
 import XTextarea from './src/components/x-textarea/index.vue'
 
 export {
+  GEvent,
+  Http,
+  AppPlugin,
+  PagePlugin,
+  Navbar,
+  Page,
+  Toolbar,
+
   Actionsheet,
   Agree,
   AjaxPlugin,
