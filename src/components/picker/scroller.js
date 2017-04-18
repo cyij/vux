@@ -16,7 +16,7 @@ const TEMPLATE = `
 const Animate = require('./animate')
 const { getElement, getComputedStyle, easeOutCubic, easeInOutCubic } = require('./util')
 
-var Scroller = function (container, options) {
+let Scroller = function (container, options) {
   var self = this
 
   options = options || {}
@@ -101,7 +101,7 @@ var Scroller = function (container, options) {
   component.addEventListener('mouseup', touchEndHandler, false)
 }
 
-var members = {
+let members = {
   value: null,
   __prevValue: null,
   __isSingleTouch: false,
@@ -191,7 +191,9 @@ var members = {
   },
 
   destroy () {
-    this.__component.parentNode && this.__component.parentNode.removeChild(this.__component)
+    if (this.__component.parentNode) {
+      this.__component.parentNode.removeChild(this.__component)
+    }
   },
 
   __selectItem (selectedItem) {
@@ -229,7 +231,7 @@ var members = {
     const target = ev.touches ? ev.touches[0] : ev
     const isMobile = !!ev.touches
 
-    if (ev.touches && touches.length == null) {
+    if (ev.touches && touches.length === null) {
       throw new Error('Invalid touch list: ' + touches)
     }
     if (timeStamp instanceof Date) {
@@ -280,7 +282,7 @@ var members = {
     const target = ev.touches ? ev.touches[0] : ev
     const isMobile = !!ev.touches
 
-    if (touches && touches.length == null) {
+    if (touches && touches.length === null) {
       throw new Error('Invalid touch list: ' + touches)
     }
     if (timeStamp instanceof Date) {
@@ -544,7 +546,7 @@ var members = {
 }
 
 // Copy over members to prototype
-for (var key in members) {
+for (let key in members) {
   Scroller.prototype[key] = members[key]
 }
 
