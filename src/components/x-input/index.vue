@@ -35,8 +35,6 @@
 <script>
 import Icon from '../icon'
 import InlineDesc from '../inline-desc'
-import Validator from '../../libs/validate'
-import trim from '../../libs/trim'
 import Debounce from '../../tools/debounce'
 
 export default {
@@ -97,51 +95,17 @@ export default {
       type: String,
       default: 'false'
     },
-    validator: String,
     debounce: Number
   },
   data () {
     return {
-      firstError: '',
-      forceShowError: false,
       hasLengthEqual: false,
       currentValue: '',
-      currentVCodeDelay: 0,
-      validators: [],
-      error: ''
+      currentVCodeDelay: 0
     }
   },
   created () {
     this.currentValue = this.value || ''
-    if (this.validator) {
-      let vs = this.validator.split(';')
-      for (let i=0; i<vs.length; i++) {
-        vs[i] = trim(vs[i])
-        if (!vs[i]) {
-          continue
-        }
-        let func, params=[], error
-        vs[i] = vs[i].split('|')
-        let tmp = trim(vs[i][0])
-        if (vs[i].length > 1) {
-          error = trim(vs[i][1])
-        }
-        let pos = tmp.indexOf('(')
-        if (pos >= 0) {
-          func = trim(tmp.substr(0, pos))
-          tmp = tmp.substr(pos+1, tmp.length-pos-2).split(',')
-          for (let j=0; j<tmp.length; j++) {
-            tmp[j] = trim(tmp[j])
-            if (tmp[j]) {
-              params.push(tmp[j])
-            }
-          }
-        } else {
-          func = tmp
-        }
-        this.validators.push([func, params, error])
-      }
-    }
     if (this.debounce) {
       this._debounce = Debounce(() => {
         this.$emit('on-change', this.currentValue)
@@ -176,49 +140,28 @@ export default {
     reset (value = '') {
       this.dirty = false
       this.currentValue = value
-      this.firstError = ''
-      this.validate(true)
+      if (this.validate) {
+        this.validate(true)
+      }
     },
     clear () {
       this.currentValue = ''
       this.$refs.input.focus()
-      this.validate(true)
+      if (this.validate) {
+        this.validate(true)
+      }
     },
     focus () {
       this.$refs.input.focus()
-    },
-    getError () {
-      return this.error
     },
     focusHandler () {
       this.$emit('on-focus', this.currentValue)
     },
     blur () {
-      this.validate(true)
+      if (this.validate) {
+        this.validate(true)
+      }
       this.$emit('on-blur', this.currentValue)
-    },
-    validate (ignoreEmpty) {
-      if (this.validators.length < 1) {
-        return true 
-      }
-      let status = true, error
-      for (let i=0; i<this.validators.length; i++) {
-        let validate = this.validators[i]
-        if (!Validator(validate[0], this.currentValue, validate[1], ignoreEmpty)) {
-          status = false
-          error = validate[2]
-          break
-        }
-      }
-      if (!status) {
-        if (!error) {
-          error = this.title + '不正确'
-        }
-        this.error = error
-      } else {
-        this.error = ''
-      }
-      return status
     },
     vcodeClick () {
       if (this.currentVCodeDelay > 0) {
