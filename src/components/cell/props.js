@@ -15,6 +15,7 @@ export default function () {
       type: Boolean,
       default: true
     },
+    childValue: [String, Number, Array],
     arrowDirection: String // down or up
   }
 }

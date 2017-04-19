@@ -45,6 +45,16 @@ export default {
         this.$emit('on-click', this.link)
       }
     }
+  },
+  data () {
+    return {
+      currentValue: ''
+    }
+  },
+  watch: {
+    childValue (newVal) {
+      this.currentValue = newVal
+    }
   }
 }
 </script>
