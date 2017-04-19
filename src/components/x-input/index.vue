@@ -101,7 +101,8 @@ export default {
     return {
       hasLengthEqual: false,
       currentValue: '',
-      currentVCodeDelay: 0
+      currentVCodeDelay: 0,
+      vcodeTimer: ''
     }
   },
   created () {
@@ -120,6 +121,9 @@ export default {
     })
   },
   beforeDestroy () {
+    if (this.vcodeTimer) {
+      clearInterval(this.vcodeTimer)
+    }
     if (this._debounce) {
       this._debounce.cancel()
     }
@@ -171,9 +175,10 @@ export default {
     },
     showDelay () {
       let that = this
-      let t = setInterval(function() {
+      this.vcodeTimer = setInterval(function() {
         if (that.currentVCodeDelay >= that.vcodeDelay) {
-          clearInterval(t)
+          clearInterval(that.vcodeTimer)
+          that.vcodeTimer = ''
           this.currentVCodeDelay = 0
           that.$refs.vcode.innerHTML = that.vcodeText
         } else {
