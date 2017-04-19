@@ -42,7 +42,7 @@ export default {
   methods: {
     onClick () {
       if (this.isLink) {
-        this.$emit(this.link)
+        this.$emit('on-click', this.link)
       }
     }
   }
