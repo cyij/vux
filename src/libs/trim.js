@@ -2,9 +2,9 @@
 export default function (str, replaceBreak) {
   str = str.replace(/^\s\s*/, '')
   var ws = /\s/
-  var i = str.length, rs = str
+  var i = str.length
   while (ws.test(str.charAt(--i))) {
-    rs = str.slice(0, i)
+    var rs = str.slice(0, i + 1)
   }
   if (!rs) {
     return ''

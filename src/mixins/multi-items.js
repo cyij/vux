@@ -1,3 +1,5 @@
+import { go } from '../libs/router'
+
 const parentMixin = {
   mounted () {
     if (this.value >= 0) {
@@ -69,9 +71,7 @@ const childMixin = {
         })
       }
       if (hasLink === true) {
-        this.$nextTick(() => {
-          this.$emit('on-item-click', this.link)
-        })
+        go(this.link, this.$router)
       }
     }
   },

@@ -1,17 +1,11 @@
 // THIS FILE IS ONLY FOR IDE ENTRY CHECKING NOT FOR REAL USAGE
-import GEvent from './src/libs/gevent.js'
-import Http from './src/libs/http.js'
-import AppPlugin from './src/plugins/app.js'
-import PagePlugin from './src/plugins/page/index.js'
-import Navbar from './src/components/navbar/index.vue'
-import Page from './src/components/page/index.vue'
-import Toolbar from './src/components/toolbar/index.vue'
 
 import Actionsheet from './src/components/actionsheet/index.vue'
 import Agree from './src/components/agree/index.vue'
 import AjaxPlugin from './src/plugins/ajax/index.js'
 import Alert from './src/components/alert/index.vue'
 import AlertPlugin from './src/plugins/alert/index.js'
+import AppPlugin from './src/plugins/app/index.js'
 import Array2stringFilter from './src/filters/array2String.js'
 import Badge from './src/components/badge/index.vue'
 import base64 from './src/tools/base64/index.js'
@@ -28,6 +22,10 @@ import Checker from './src/components/checker/checker.vue'
 import CheckerItem from './src/components/checker/checker-item.vue'
 import CheckIcon from './src/components/check-icon/index.vue'
 import Checklist from './src/components/checklist/index.vue'
+import ChinaAddressData from './src/datas/china_address.json'
+import ChinaAddressV1Data from './src/datas/china_address_v1.json'
+import ChinaAddressV2Data from './src/datas/china_address_v2.json'
+import ChinaAddressV3Data from './src/datas/china_address_v3.json'
 import ClickOutsideDirective from './src/directives/click-outside/index.js'
 import Clocker from './src/components/clocker/index.vue'
 import ColorPicker from './src/components/color-picker/index.vue'
@@ -121,6 +119,7 @@ import VuxComponentListData from './src/datas/vux_component_list.json'
 import WechatEmotion from './src/components/wechat-emotion/index.vue'
 import WechatPlugin from './src/plugins/wechat/index.js'
 import WepayInput from './src/components/wepay-input/index.vue'
+import XAddress from './src/components/x-address/index.vue'
 import XButton from './src/components/x-button/index.vue'
 import XCircle from './src/components/x-circle/index.vue'
 import XDialog from './src/components/x-dialog/index.vue'
@@ -135,19 +134,12 @@ import XTable from './src/components/x-table/index.vue'
 import XTextarea from './src/components/x-textarea/index.vue'
 
 export {
-  GEvent,
-  Http,
-  AppPlugin,
-  PagePlugin,
-  Navbar,
-  Page,
-  Toolbar,
-
   Actionsheet,
   Agree,
   AjaxPlugin,
   Alert,
   AlertPlugin,
+  AppPlugin,
   Array2stringFilter,
   Badge,
   base64,
@@ -164,6 +156,10 @@ export {
   CheckerItem,
   CheckIcon,
   Checklist,
+  ChinaAddressData,
+  ChinaAddressV1Data,
+  ChinaAddressV2Data,
+  ChinaAddressV3Data,
   ClickOutsideDirective,
   Clocker,
   ColorPicker,
@@ -257,6 +253,7 @@ export {
   WechatEmotion,
   WechatPlugin,
   WepayInput,
+  XAddress,
   XButton,
   XCircle,
   XDialog,
