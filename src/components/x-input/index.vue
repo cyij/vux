@@ -179,7 +179,7 @@ export default {
         if (that.currentVCodeDelay >= that.vcodeDelay) {
           clearInterval(that.vcodeTimer)
           that.vcodeTimer = ''
-          this.currentVCodeDelay = 0
+          that.currentVCodeDelay = 0
           that.$refs.vcode.innerHTML = that.vcodeText
         } else {
           that.currentVCodeDelay++
