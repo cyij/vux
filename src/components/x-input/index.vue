@@ -65,7 +65,7 @@ export default {
     },
     vcodeDelayText: {
       type: String,
-      default: '重新发送 (__)'
+      default: '(__)'
     },
     vcodeStyle: Object,
     placeholder: String,
@@ -185,9 +185,9 @@ export default {
           that.currentVCodeDelay++
           let vcodeDelayText = that.vcodeDelayText
           if (vcodeDelayText.indexOf('__') >= 0) {
-            vcodeDelayText = vcodeDelayText.replace(/__/, (that.vcodeDelay - that.currentVCodeDelay))
+            vcodeDelayText = vcodeDelayText.replace(/__/, (that.vcodeDelay - that.currentVCodeDelay)+'s')
           } else {
-            vcodeDelayText = vcodeDelayText + (that.vcodeDelay - that.currentVCodeDelay)
+            vcodeDelayText = vcodeDelayText + (that.vcodeDelay - that.currentVCodeDelay)+'s'
           }
           that.$refs.vcode.innerHTML = vcodeDelayText
         }
