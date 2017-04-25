@@ -1,49 +1,50 @@
 <template>
-  <div class="weui-cells_radio">
-    <label class="weui-cell weui-cell_radio weui-check__label" :for="`radio_${uuid}_${index}`" v-for="(one, index) in options">
-      <div class="weui-cell__bd">
-        <p>
-          <img class="vux-radio-icon" :src="one.icon" v-show="one && one.icon">
-          <span class="vux-radio-label">{{one | getValue}}</span>
-        </p>
-      </div>
-      <div class="weui-cell__ft">
-        <input type="radio" class="weui-check" v-model="currentValue" :id="`radio_${uuid}_${index}`" :value="getKey(one)">
-        <span class="weui-icon-checked"></span>
-      </div>
-    </label>
-    <div class="weui-cell" v-show="fillMode">
-      <div class="weui-cell__hd"><label for="" class="weui-label">{{fillLabel}}</label></div>
-      <div class="weui-cell__bd">
-        <input class="weui-input needsclick" type="text" v-model="fillValue" :placeholder="fillPlaceholder" @blur="isFocus=false" @focus="onFocus()">
-      </div>
-      <div class="weui-cell__ft" v-show="value==='' && !isFocus">
-        <i class="weui-icon-warn"></i>
-      </div>
+<div class="weui-cells_checkbox">
+  <label class="weui-cell weui-check__label" v-for="(one, index) in datas">
+    <div v-if="align !== 'right'" class="weui-cell__hd" :style="{width: $parent.labelWidth, marginRight: $parent.labelMarginRight}">
+      <input type="radio" class="weui-check" v-model="currentValue" :name="name" ref="input" :value="index" @click="onClick">
+      <i class="weui-icon-checked"></i>
     </div>
-  </div>
+    <div class="weui-cell__bd">
+      <p :style="{textAlign: $parent.labelAlign}">{{one}}</p>
+    </div>
+    <div v-if="align === 'right'" class="weui-cell__ft">
+      <span class="weui-icon-checked"></span>
+    </div>
+  </label>
+</div>
 </template>
 
 <script>
-import Base from '../../libs/base'
-import { getValue, getKey } from '../checklist/object-filter'
-import props from './props'
 
 export default {
-  mixins: [Base],
-  filters: {
-    getValue,
-    getKey
+  props: {
+    datas: {
+      type: Array,
+      required: true
+    },
+    value: [String, Number],
+    name: String,
+    align: String,
+    type: String
   },
-  props: props(),
   mounted () {
-    this.handleChangeEvent = true
+    this.$nextTick(function () {
+      if (this.type) {
+        this.$refs.input.setAttribute('type', this.type)
+      }
+    })
+  },
+  data () {
+    return {
+      currentValue: this.value
+    } 
   },
   methods: {
-    getKey,
-    onFocus () {
-      this.currentValue = this.fillValue || ''
-      this.isFocus = true
+    onClick (e) {
+      if (this.currentValue == e.target.value) {
+        this.currentValue = null
+      }
     }
   },
   watch: {
@@ -51,37 +52,16 @@ export default {
       this.currentValue = val
     },
     currentValue (newVal) {
-      var isOption = contains(this.options, newVal)
-      if (newVal !== '' && isOption) {
-        this.fillValue = ''
-      }
-      this.$emit('on-change', newVal)
       this.$emit('input', newVal)
     },
-    fillValue (newVal) {
-      if (this.fillMode && this.isFocus) {
-        this.currentValue = newVal
-      }
-    }
   },
   data () {
     return {
-      fillValue: '',
-      isFocus: false,
       currentValue: this.value
     }
   }
 }
 
-function contains (a, obj) {
-  var i = a.length
-  while (i--) {
-    if (a[i] === obj) {
-      return true
-    }
-  }
-  return false
-}
 </script>
 
 <style lang="less">

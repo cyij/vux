@@ -28,6 +28,8 @@ const plugin = {
         watcher && watcher()
         if (typeof options === 'string') {
           $vm.text = options
+          $vm.position = 'bottom'
+          $vm.type = 'text' 
         } else if (typeof options === 'object') {
           mergeOptions($vm, options)
         }
