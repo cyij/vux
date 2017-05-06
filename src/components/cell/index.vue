@@ -41,9 +41,9 @@ export default {
   },
   methods: {
     onClick () {
-      if (this.isLink) {
+      //if (this.isLink) {
         this.$emit('on-click', this.link)
-      }
+      //}
     }
   },
   data () {
