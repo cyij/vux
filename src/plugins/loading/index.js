@@ -30,6 +30,12 @@ const plugin = {
             val === false && options.onHide && options.onHide($vm)
           })
         }
+        let width = $vm.text.length
+        if (width > 20) {
+          width = 20
+        }
+        width += 2
+        $vm.width = width + 'em'
         $vm.show = true
       },
       hide () {

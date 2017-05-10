@@ -21,21 +21,18 @@ export default {
       type: String,
       default: '加载中'
     },
+    width: {
+      type: String,
+      default: '7.6em'
+    },
     position: String
   },
   created () {
     this.show = this.value
-    let width = this.text.length
-    if (width > 20) {
-      width = 20
-    }
-    width += 2
-    this.width = width + 'em'
   },
   data () {
     return {
       show: false,
-      width: 'auto'
     }
   },
   watch: {
