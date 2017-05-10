@@ -2,7 +2,7 @@
   <transition name="vux-mask">
     <div class="weui-loading_toast" v-show="show">
       <div class="weui-mask_transparent"></div>
-      <div class="weui-toast" :style="{ position: position; width: width }">
+      <div class="weui-toast" :style="{ position: position, width: width }">
         <i class="weui-loading weui-icon_toast"></i>
         <p class="weui-toast__content">{{ text }}<slot></slot></p>
       </div>
