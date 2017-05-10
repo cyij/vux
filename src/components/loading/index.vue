@@ -2,7 +2,7 @@
   <transition name="vux-mask">
     <div class="weui-loading_toast" v-show="show">
       <div class="weui-mask_transparent"></div>
-      <div class="weui-toast" :style="{ position: position }">
+      <div class="weui-toast" :style="{ position: position; width: width }">
         <i class="weui-loading weui-icon_toast"></i>
         <p class="weui-toast__content">{{ text }}<slot></slot></p>
       </div>
@@ -25,10 +25,17 @@ export default {
   },
   created () {
     this.show = this.value
+    let width = this.text.length
+    if (width > 20) {
+      width = 20
+    }
+    width += 2
+    this.width = width + 'em'
   },
   data () {
     return {
-      show: false
+      show: false,
+      width: 'auto'
     }
   },
   watch: {
