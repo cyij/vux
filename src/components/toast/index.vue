@@ -134,7 +134,7 @@ export default {
   transition: all 400ms cubic-bezier(.36,.66,.04,1);
 }
 .weui-toast {
-  transform: translateX(-50%);
+  transform: translate3d(-50%, -50%, 0);
   margin-left: 0!important;
 }
 .weui-toast.weui-toast_forbidden {
