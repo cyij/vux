@@ -37,13 +37,16 @@ export default {
   },
   data () {
     return {
-      currentValue: this.value
+      currentValue: this.value,
+      preValue: this.value
     } 
   },
   methods: {
     onClick (e) {
-      if (this.currentValue == e.target.value) {
+      if (this.value != null && this.currentValue == this.preValue) {
         this.currentValue = null
+      } else {
+        this.preValue = this.currentValue
       }
     }
   },
