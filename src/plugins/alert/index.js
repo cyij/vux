@@ -29,6 +29,10 @@ const plugin = {
           }
         })
         $vm.showValue = true
+        if (!window.__popupStacks) {
+          window.__popupStacks = []
+        }
+        window.__popupStacks.push([alert, true])
       },
       hide () {
         $vm.showValue = false

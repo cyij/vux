@@ -42,6 +42,10 @@ const plugin = {
           options && options.onConfirm && options.onConfirm()
         })
         $vm.showValue = true
+        if (!window.__popupStacks) {
+          window.__popupStacks = []
+        }
+        window.__popupStacks.push([confirm, true])
       },
       hide () {
         $vm.showValue = false

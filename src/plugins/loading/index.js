@@ -37,6 +37,10 @@ const plugin = {
         width += 2
         $vm.width = width + 'em'
         $vm.show = true
+        if (!window.__popupStacks) {
+          window.__popupStacks = []
+        }
+        window.__popupStacks.push([loading, true])
       },
       hide () {
         $vm.show = false
