@@ -16,6 +16,7 @@ const plugin = {
     }
 
     const loading = {
+      isShow: false,
       show (options = {}) {
         // destroy watcher
         watcher && watcher()
@@ -37,13 +38,11 @@ const plugin = {
         width += 2
         $vm.width = width + 'em'
         $vm.show = true
-        if (!window.__popupStacks) {
-          window.__popupStacks = []
-        }
-        window.__popupStacks.push([loading, true])
+        this.isShow = true
       },
       hide () {
         $vm.show = false
+        this.isShow = false
       }
     }
 

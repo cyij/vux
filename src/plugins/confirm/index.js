@@ -18,6 +18,7 @@ const plugin = {
     }
 
     const confirm = {
+      isShow: false,
       show (options) {
         if (typeof options === 'object') {
           mergeOptions($vm, options)
@@ -42,13 +43,11 @@ const plugin = {
           options && options.onConfirm && options.onConfirm()
         })
         $vm.showValue = true
-        if (!window.__popupStacks) {
-          window.__popupStacks = []
-        }
-        window.__popupStacks.push([confirm, true])
+        this.isShow = true
       },
       hide () {
         $vm.showValue = false
+        this.isShow = false
       }
     }
 

@@ -14,6 +14,7 @@ const plugin = {
     }
 
     const alert = {
+      isShow: false,
       show (options = {}) {
         if (typeof options === 'object') {
           mergeOptions($vm, options)
@@ -29,15 +30,13 @@ const plugin = {
           }
         })
         $vm.showValue = true
-        if (!window.__popupStacks) {
-          window.__popupStacks = []
-        }
-        window.__popupStacks.push([alert, true])
+        this.isShow = true
       },
       hide () {
         $vm.showValue = false
         this.watcher && this.watcher()
         this.watcher = null
+        this.isShow = false
       }
     }
 
