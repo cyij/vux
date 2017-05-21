@@ -201,7 +201,7 @@ export default {
       if (this._debounce) {
         this._debounce()
       } else {
-        this.$emit('on-change', newVal)
+        this.$emit('on-change', val)
       }
     },
     currentValue (newVal) {
