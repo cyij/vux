@@ -197,8 +197,12 @@ export default {
   watch: {
     value (val) {
       this.currentValue = val
-      this.$emit('on-change', val)
       this.$emit('input', val)
+      if (this._debounce) {
+        this._debounce()
+      } else {
+        this.$emit('on-change', newVal)
+      }
     },
     currentValue (newVal) {
       this.$emit('input', newVal)
