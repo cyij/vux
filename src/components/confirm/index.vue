@@ -8,7 +8,7 @@
     @on-hide="$emit('on-hide')"
     @on-show="$emit('on-show')">
       <div class="weui-dialog__hd"><strong class="weui-dialog__title">{{title}}</strong></div>
-      <div class="weui-dialog__bd"><slot><div v-html="content"></div></slot></div>
+      <div class="weui-dialog__bd" :style="contentStyle"><slot><div v-html="content"></div></slot></div>
       <div class="weui-dialog__ft">
         <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default" @click="_onCancel">{{cancelText}}</a>
         <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" @click="_onConfirm">{{confirmText}}</a>
@@ -56,6 +56,11 @@ export default {
     if (this.value) {
       this.showValue = this.value
     }
+    if (!this.content) {
+      this.contentStyle = {
+        minHeight: 0
+      }
+    }
   },
   watch: {
     value (val) {
@@ -67,7 +72,8 @@ export default {
   },
   data () {
     return {
-      showValue: false
+      showValue: false,
+      contentStyle: {}
     }
   },
   methods: {
