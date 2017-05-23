@@ -9,7 +9,7 @@
       <div class="weui-dialog__hd">
         <strong class="weui-dialog__title">{{title}}</strong>
       </div>
-      <div class="weui-dialog__bd">
+      <div class="weui-dialog__bd" :style="contentStyle">
         <slot>
           <div v-html="content"></div>
         </slot>
@@ -34,6 +34,11 @@ export default {
     if (typeof this.value !== 'undefined') {
       this.showValue = this.value
     }
+    if (!this.content) {
+      this.contentStyle = {
+        minHeight: 0
+      }
+    }
   },
   props: {
     value: Boolean,
@@ -54,7 +59,8 @@ export default {
   },
   data () {
     return {
-      showValue: false
+      showValue: false,
+      contentStyle: {}
     }
   },
   methods: {

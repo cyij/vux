@@ -19,7 +19,7 @@ const plugin = {
         if (typeof options === 'object') {
           mergeOptions($vm, options)
         } else if (typeof options === 'string') {
-          $vm.content = options
+          $vm.title = options
         }
         this.watcher && this.watcher()
         this.watcher = $vm.$watch('showValue', (val) => {
