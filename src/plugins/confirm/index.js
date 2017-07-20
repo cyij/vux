@@ -38,9 +38,11 @@ const plugin = {
 
         $vm.$on('on-cancel', () => {
           options && options.onCancel && options.onCancel()
+          this.isShow = false
         })
         $vm.$on('on-confirm', () => {
           options && options.onConfirm && options.onConfirm()
+          this.isShow = false
         })
         $vm.showValue = true
         this.isShow = true

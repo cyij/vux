@@ -26,6 +26,7 @@ const plugin = {
           val && options.onShow && options.onShow($vm)
           if (val === false && options.onHide) {
             options.onHide($vm)
+            this.isShow = false
             this.watcher && this.watcher()
           }
         })

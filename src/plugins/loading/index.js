@@ -25,10 +25,14 @@ const plugin = {
         } else if (typeof options === 'object') {
           mergeOptions($vm, options)
         }
+        let that = this
         if (typeof options === 'object' && options.onShow || options.onHide) {
           watcher = $vm.$watch('show', (val) => {
             val && options.onShow && options.onShow($vm)
-            val === false && options.onHide && options.onHide($vm)
+            if (val === false && options.onHide) {
+              options.onHide($vm)
+              that.isShow = false
+            }
           })
         }
         let width = $vm.text.length

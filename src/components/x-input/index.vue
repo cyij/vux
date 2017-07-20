@@ -173,6 +173,11 @@ export default {
       }
       this.$emit('on-vcode-click')
     },
+    resetVcode () {
+      if (this.currentVCodeDelay-1 < this.vcodeDelay) {
+        this.currentVCodeDelay = this.vcodeDelay
+      }
+    },
     showDelay () {
       let that = this
       this.vcodeTimer = setInterval(function() {
